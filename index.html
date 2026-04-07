@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mary's Hand Pitch Presentation</title>
+  <link rel="icon" href="assets/images/AppIcon.png">
+  <link rel="stylesheet" href="css/aurora.css">
+  <link rel="stylesheet" href="css/glass.css">
+  <link rel="stylesheet" href="css/slides.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    /* Custom SVG icon system — matches app's gold/glass aesthetic */
+    .slide-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+    }
+    .slide-icon svg { width: 20px; height: 20px; }
+
+    /* Stat card icon — small gold circle with SVG */
+    .stat-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(134,0,56,0.2), rgba(253,185,19,0.15));
+      border: 1px solid rgba(253,185,19,0.2);
+    }
+    .stat-icon svg { width: 20px; height: 20px; color: var(--gold); }
+
+    /* Pillar / CBL icon — larger with gradient bg */
+    .pillar-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(134,0,56,0.25), rgba(253,185,19,0.15));
+      border: 1px solid rgba(253,185,19,0.25);
+      box-shadow: 0 4px 12px rgba(134,0,56,0.15);
+      margin-bottom: 8px;
+    }
+    .pillar-icon svg { width: 26px; height: 26px; color: var(--gold); }
+
+    /* CBL step number overlay */
+    .cbl-step {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(134,0,56,0.3), rgba(253,185,19,0.15));
+      border: 1px solid rgba(253,185,19,0.25);
+      box-shadow: 0 4px 12px rgba(134,0,56,0.15);
+      position: relative;
+    }
+    .cbl-step svg { width: 24px; height: 24px; color: var(--gold); }
+    .cbl-step .step-num {
+      position: absolute; top: -6px; right: -6px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gold); color: var(--dark);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* A11y badge icon — gradient mini square */
+    .a11y-icon {
+      width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(134,0,56,0.2), rgba(253,185,19,0.12));
+      border: 1px solid rgba(253,185,19,0.2);
+    }
+    .a11y-icon svg { width: 15px; height: 15px; color: var(--gold); }
+
+    /* Design principle icon */
+    .principle-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(134,0,56,0.2), rgba(253,185,19,0.12));
+      border: 1px solid rgba(253,185,19,0.15);
+    }
+    .principle-icon svg { width: 16px; height: 16px; color: var(--gold); }
+
+    /* Source links */
+    a.source-link {
+      color: var(--gold); text-decoration: none; opacity: 0.6; font-size: 10px;
+      border-bottom: 1px dotted rgba(253,185,19,0.3);
+      transition: opacity 0.2s ease;
+    }
+    a.source-link:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Aurora Background -->
+  <div id="aurora" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div id="progress-bar"></div>
+
+  <div id="slides">
+
+    <!-- SLIDE 0: Splash -->
+    <section class="slide active" id="slide-splash">
+      <div class="slide-content flex-col center gap-24">
+        <img src="assets/images/splash_logo.png" alt="Mary's Hand" class="splash-logo app-icon-lg">
+        <div class="splash-title" style="font-size: 36px; font-weight: 700;">Mary's Hand</div>
+        <div class="splash-tagline text-dim" style="font-size: 16px;">Your community, always within reach.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide" id="slide-1">
+      <div class="slide-content flex-col center gap-24 stagger-in">
+        <img src="assets/images/AppIcon.png" alt="Mary's Hand" class="app-icon app-icon-xl">
+        <h1 class="text-hero">Mary's Hand</h1>
+        <p class="text-subtitle text-dim" style="max-width: 600px;">Your community, always within reach.</p>
+        <div class="gold-divider"></div>
+        <div class="flex-col center gap-8">
+          <p class="text-body">Bethune-Cookman University</p>
+          <p class="text-caption">HBCU C&sup2; App Design Challenge 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: The Problem -->
+    <section class="slide" id="slide-2">
+      <div class="slide-content split" style="padding: 40px 60px;">
+        <div class="flex-col gap-24 stagger-in" style="flex: 1.2;">
+          <span class="section-label">The Problem</span>
+          <div class="flex-col gap-8">
+            <div class="stat-number" id="stat-counter" style="font-size: 86px;">61,990</div>
+            <p class="text-subtitle" style="font-size: 22px;">Volusia County residents<br>face food insecurity</p>
+            <a class="source-link" href="https://map.feedingamerica.org/county/2017/overall/florida/county/volusia" target="_blank">Feeding America, Map the Meal Gap</a>
+          </div>
+          <div class="flex-col gap-12">
+            <!-- Food deserts -->
+            <div class="glass-card-sm flex-row gap-12" style="padding: 12px 14px;">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p style="font-weight: 600; font-size: 14px;">Daytona Beach neighborhoods classified as food deserts</p>
+                <a class="source-link" href="https://blogs.ifas.ufl.edu/extension/2020/04/11/increasing-accessibility-to-fresh-produce-in-urban-food-deserts-in-volusia-county-florida/" target="_blank">UF/IFAS Extension, 2020</a>
+              </div>
+            </div>
+            <!-- Children -->
+            <div class="glass-card-sm flex-row gap-12" style="padding: 12px 14px;">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <p style="font-weight: 600; font-size: 14px;">1 in 5 children in Volusia County are food insecure</p>
+                <a class="source-link" href="https://map.feedingamerica.org/county/2017/overall/florida/county/volusia" target="_blank">Feeding America, Map the Meal Gap</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-col center gap-16" style="flex: 0.8;">
+          <div class="promogen-video" style="height: 420px;">
+            <video muted playsinline loop preload="metadata">
+              <source src="assets/videos/slide2fridge.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Research Evidence -->
+    <section class="slide" id="slide-3">
+      <div class="slide-content flex-col center gap-24" style="padding: 40px 60px;">
+        <span class="section-label">Our Research</span>
+        <h2 class="text-title" style="font-size: 40px;">What the Data Tells Us</h2>
+
+        <div class="three-cols" style="max-width: 1100px;">
+          <!-- Column 1: Community / Local — LEADS -->
+          <div class="glass-card flex-col gap-16 stagger-in" style="text-align: left;">
+            <h3 class="text-gold" style="font-size: 16px; font-weight: 700;">Our Community</h3>
+            <div class="flex-col gap-12">
+              <div>
+                <p style="font-size: 28px; font-weight: 700; color: var(--gold);">48%</p>
+                <p class="text-dim" style="font-size: 12px;">below FL median income in Daytona Beach food deserts</p>
+                <a class="source-link" href="https://blogs.ifas.ufl.edu/extension/2020/04/11/increasing-accessibility-to-fresh-produce-in-urban-food-deserts-in-volusia-county-florida/" target="_blank">UF/IFAS Extension, 2020</a>
+              </div>
+              <div>
+                <p style="font-size: 28px; font-weight: 700; color: var(--gold);">1 in 5</p>
+                <p class="text-dim" style="font-size: 12px;">children in Volusia County are food insecure</p>
+                <a class="source-link" href="https://map.feedingamerica.org/county/2017/overall/florida/county/volusia" target="_blank">Feeding America, Map the Meal Gap</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: University students as PART of community -->
+          <div class="glass-card flex-col gap-16 stagger-in" style="text-align: left;">
+            <h3 class="text-gold" style="font-size: 16px; font-weight: 700;">Our Students Are Affected Too</h3>
+            <div class="flex-col gap-12">
+              <div>
+                <p style="font-size: 28px; font-weight: 700; color: var(--gold);">72.9%</p>
+                <p class="text-dim" style="font-size: 12px;">of students at 4 southeastern HBCUs reported food insecurity</p>
+                <a class="source-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8521625/" target="_blank">Duke et al., J. of American College Health, 2021</a>
+              </div>
+              <div>
+                <p style="font-size: 28px; font-weight: 700; color: var(--gold);">40%</p>
+                <p class="text-dim" style="font-size: 12px;">less likely to graduate when food insecure</p>
+                <a class="source-link" href="https://publichealth.jhu.edu/2021/food-insecurity-during-college-years-linked-to-lower-graduation-rate" target="_blank">Johns Hopkins Bloomberg School, 2021</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3: Community response -->
+          <div class="glass-card flex-col gap-16 stagger-in" style="text-align: left;">
+            <h3 class="text-gold" style="font-size: 16px; font-weight: 700;">Community Response</h3>
+            <div class="flex-col gap-12">
+              <div>
+                <p style="font-size: 15px; font-weight: 600;">BCU opened "Mother Mary's Market"</p>
+                <p class="text-dim" style="font-size: 12px;">Campus food pantry with Second Harvest Food Bank</p>
+                <a class="source-link" href="https://www.cfpublic.org/education/2025-02-04/bethune-cookman-university-adds-food-pantry" target="_blank">Central Florida Public Media, Feb 2025</a>
+              </div>
+              <div>
+                <p style="font-size: 15px; font-weight: 600;">But no app connects residents to surplus food or local events</p>
+                <p class="text-dim" style="font-size: 12px;">Food pantries help, but technology can bridge the gap for the whole community</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+          <span class="glass-chip" style="font-size: 11px;">GAO Report 2024</span>
+          <span class="glass-chip" style="font-size: 11px;">USDA Food Atlas</span>
+          <span class="glass-chip" style="font-size: 11px;">Hope Center, Temple U</span>
+          <span class="glass-chip" style="font-size: 11px;">Johns Hopkins 2021</span>
+          <span class="glass-chip" style="font-size: 11px;">UF/IFAS Extension</span>
+          <span class="glass-chip" style="font-size: 11px;">Feeding America</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Mary McLeod Bethune -->
+    <section class="slide" id="slide-4">
+      <div class="slide-content flex-col center gap-32">
+        <div class="video-bg">
+          <video muted playsinline loop preload="metadata">
+            <source src="assets/videos/MaryMcleodDrone.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="stagger-in flex-col center gap-24">
+          <span class="section-label">Our Namesake</span>
+          <h2 class="text-hero" style="font-size: 56px; max-width: 800px;">Mary McLeod<br><span class="text-gold">Bethune</span></h2>
+          <p class="text-body" style="max-width: 650px; line-height: 1.6;">
+            In 1904, she founded Bethune-Cookman University with $1.50 and a mission. To lift her community through education and service. Over a century later, the neighborhoods around her university still need help.
+          </p>
+          <p class="text-body" style="font-style: italic; color: var(--gold); opacity: 0.8; font-size: 22px;">"From her hand to yours."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: CBL Framework -->
+    <section class="slide" id="slide-5">
+      <div class="slide-content flex-col center gap-32">
+        <span class="section-label">Our Process</span>
+        <h2 class="text-title">Challenge-Based Learning</h2>
+
+        <div class="flex-row center gap-16 w-full" style="justify-content: center;">
+          <div class="glass-card flex-col center gap-12 stagger-in" style="flex: 1; max-width: 300px;">
+            <div class="cbl-step">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              <span class="step-num">1</span>
+            </div>
+            <h3 class="text-gold" style="font-size: 18px; font-weight: 700;">Big Idea</h3>
+            <p class="text-body" style="font-size: 15px;">Community Well-Being</p>
+          </div>
+
+          <span class="flow-arrow cbl-arrow">&rarr;</span>
+
+          <div class="glass-card flex-col center gap-12 stagger-in" style="flex: 1; max-width: 300px;">
+            <div class="cbl-step">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span class="step-num">2</span>
+            </div>
+            <h3 class="text-gold" style="font-size: 18px; font-weight: 700;">Essential Question</h3>
+            <p class="text-body" style="font-size: 15px;">How can technology connect our community to fight food insecurity together?</p>
+          </div>
+
+          <span class="flow-arrow cbl-arrow">&rarr;</span>
+
+          <div class="glass-card flex-col center gap-12 stagger-in" style="flex: 1; max-width: 300px;">
+            <div class="cbl-step">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 10.33 9.33 11 8.5 11h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+              <span class="step-num">3</span>
+            </div>
+            <h3 class="text-gold" style="font-size: 18px; font-weight: 700;">Challenge</h3>
+            <p class="text-body" style="font-size: 15px;">Build an app connecting our community to food, events, and AI assistance</p>
+          </div>
+        </div>
+
+        <div class="flex-row center gap-12">
+          <span class="glass-chip" style="font-size: 12px;">USDA Food Atlas</span>
+          <span class="glass-chip" style="font-size: 12px;">Campus Surveys</span>
+          <span class="glass-chip" style="font-size: 12px;">Second Harvest Food Bank</span>
+          <span class="glass-chip" style="font-size: 12px;">6 Peer-Reviewed Studies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Three Pillars -->
+    <section class="slide" id="slide-6">
+      <div class="slide-content flex-col center gap-32 stagger-in">
+        <span class="section-label">The Solution</span>
+        <img src="assets/images/AppIcon.png" alt="Mary's Hand" class="app-icon app-icon-sm">
+        <h2 class="text-title">What Mary's Hand Does</h2>
+
+        <div class="three-cols" style="max-width: 1000px;">
+          <div class="glass-card flex-col center gap-16">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="text-gold text-subtitle" style="font-size: 22px;">Food Sharing</h3>
+            <p class="text-body" style="font-size: 15px;">Neighbors, students, and local businesses share surplus food on a community map. Anyone can claim what they need.</p>
+          </div>
+
+          <div class="glass-card flex-col center gap-16">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="text-gold text-subtitle" style="font-size: 22px;">Community Events</h3>
+            <p class="text-body" style="font-size: 15px;">Volunteer opportunities from BCU, local nonprofits, food banks, and Daytona Beach organizations. All in one place.</p>
+          </div>
+
+          <div class="glass-card flex-col center gap-16">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 class="text-gold text-subtitle" style="font-size: 22px;">Mary's Kitchen AI</h3>
+            <p class="text-body" style="font-size: 15px;">AI-powered meal planning and storage tips for families and students making the most of what they have.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Live Demo (switch to Xcode Simulator) -->
+    <section class="slide" id="slide-7">
+      <div class="slide-content flex-col center gap-32 stagger-in">
+        <span class="section-label">Live Demo</span>
+        <h2 class="text-title">Let's see it in action</h2>
+
+        <div class="glass-card flex-col center gap-24" style="padding: 40px 60px; max-width: 700px;">
+          <div class="pillar-icon" style="width: 72px; height: 72px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 34px; height: 34px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <p class="text-body" style="font-size: 18px; color: var(--text-primary); max-width: 500px;">
+            Switching to the live app on the simulator.
+          </p>
+          <div class="flex-col center gap-12" style="width: 100%;">
+            <div class="flex-row gap-12" style="flex-wrap: wrap; justify-content: center;">
+              <span class="glass-chip">Home Page</span>
+              <span class="glass-chip">Profile and Settings</span>
+              <span class="glass-chip">Food Sharing</span>
+              <span class="glass-chip">Community Events</span>
+              <span class="glass-chip">Community Map</span>
+              <span class="glass-chip">Mary's Kitchen AI</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-dim" style="font-size: 13px;">Features to walk through during live demo</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Design & Tech Stack -->
+    <section class="slide" id="slide-8">
+      <div class="slide-content split">
+        <div class="flex-col gap-32 stagger-in">
+          <span class="section-label">Design &amp; Technology</span>
+          <h2 class="text-title" style="font-size: 40px;">Built with Apple's Best</h2>
+
+          <div class="flex-col gap-12">
+            <p class="text-caption">Color Palette</p>
+            <div class="flex-row gap-16">
+              <div class="flex-col center gap-4">
+                <div class="color-swatch" style="background: #860038;"></div>
+                <span class="text-dim" style="font-size: 11px;">Maroon</span>
+              </div>
+              <div class="flex-col center gap-4">
+                <div class="color-swatch" style="background: #FDB913;"></div>
+                <span class="text-dim" style="font-size: 11px;">Gold</span>
+              </div>
+              <div class="flex-col center gap-4">
+                <div class="color-swatch" style="background: #050510; border-color: rgba(255,255,255,0.4);"></div>
+                <span class="text-dim" style="font-size: 11px;">Dark</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-col gap-12">
+            <p class="text-caption">Tech Stack</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="glass-badge gold">SwiftUI</span>
+              <span class="glass-badge gold">SwiftData</span>
+              <span class="glass-badge gold">MapKit</span>
+              <span class="glass-badge gold">OpenAI API</span>
+              <span class="glass-badge maroon">iOS 17+</span>
+              <span class="glass-badge maroon">SF Symbols</span>
+              <span class="glass-badge maroon">Core Location</span>
+            </div>
+          </div>
+
+          <div class="flex-col gap-12">
+            <p class="text-caption">Design Principles</p>
+            <div class="flex-col gap-8">
+              <div class="glass-card-sm flex-row gap-12">
+                <div class="principle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18m-9-9h18"/><circle cx="12" cy="12" r="3" opacity="0.5"/></svg>
+                </div>
+                <span style="font-size: 14px;">Glass morphism with aurora background</span>
+              </div>
+              <div class="glass-card-sm flex-row gap-12">
+                <div class="principle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+                <span style="font-size: 14px;">Apple Human Interface Guidelines</span>
+              </div>
+              <div class="glass-card-sm flex-row gap-12">
+                <div class="principle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                </div>
+                <span style="font-size: 14px;">Native iOS feel, no web views</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Transparent Promogen video (replace with homepage video later) -->
+        <div class="flex-col center">
+          <div class="promogen-video" style="height: 620px;">
+            <video muted playsinline loop preload="metadata">
+              <source src="assets/videos/slideUI.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Accessibility -->
+    <section class="slide" id="slide-9">
+      <div class="slide-content split">
+        <div class="flex-col gap-24">
+          <div class="stagger-in flex-col gap-16">
+            <span class="section-label">Inclusive Design</span>
+            <div class="flex-row gap-16" style="align-items: baseline;">
+              <span class="stat-number" style="font-size: 80px;">18+</span>
+              <h2 class="text-subtitle">Accessibility<br>Features</h2>
+            </div>
+          </div>
+
+          <div class="a11y-grid">
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span> Screen reader reads every element aloud</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></span> Font designed for dyslexia</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span> Dark and light mode options</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> Text scales up for easier reading</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg></span> AI responses read out loud</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg></span> Large buttons, easy to tap</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span> Phone vibrates to confirm actions</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Undo bar prevents accidental taps</div>
+            <div class="a11y-badge"><span class="a11y-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> Works without animations</div>
+          </div>
+          <p class="text-dim" style="font-size: 12px; margin-top: 4px;">+ 9 more features built in</p>
+        </div>
+
+        <div class="flex-col center">
+          <div class="promogen-video" style="height: 620px;">
+            <video muted playsinline loop preload="metadata">
+              <source src="assets/videos/slide8.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Impact -->
+    <section class="slide" id="slide-10">
+      <div class="slide-content flex-col center gap-32">
+        <div class="stagger-in flex-col center gap-24">
+          <span class="section-label">Impact</span>
+          <h2 class="text-title">Starting Here, Growing Outward</h2>
+        </div>
+        <div class="impact-circles">
+          <div class="impact-circle c3"><span class="text-dim" style="font-size: 13px; position: absolute; top: 8px;">Other Communities</span></div>
+          <div class="impact-circle c2"><span class="text-dim" style="font-size: 13px; position: absolute; top: 8px;">Volusia County</span></div>
+          <div class="impact-circle c1"><span style="font-weight: 700; font-size: 13px; color: var(--gold); text-align: center; line-height: 1.2;">Daytona<br>Beach</span></div>
+        </div>
+        <p class="text-body" style="max-width: 700px;">
+          Starting in the neighborhoods around BCU, Mary's Hand connects the Daytona Beach community first. Then grows outward to serve Volusia County and beyond.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Close + Q&A -->
+    <section class="slide" id="slide-11">
+      <div class="slide-content split" style="position: relative;">
+        <div class="sparkle-container" id="sparkle-container"></div>
+
+        <!-- Left: Branding + close -->
+        <div class="flex-col gap-24 stagger-in" style="align-items: flex-start;">
+          <img src="assets/images/AppIcon.png" alt="Mary's Hand" class="app-icon app-icon-lg pulse-glow">
+          <h1 class="text-hero" style="font-size: 56px;">Mary's Hand</h1>
+          <p class="text-subtitle text-gold">Your community, always within reach.</p>
+          <div class="gold-divider"></div>
+          <p class="text-body">Built at Bethune-Cookman University</p>
+          <p class="text-title" style="margin-top: 16px; opacity: 0.8;">Questions?</p>
+        </div>
+
+        <!-- Right: Transparent Promogen video (replace with final app video later) -->
+        <div class="flex-col center">
+          <div class="promogen-video" style="height: 620px;">
+            <video muted playsinline loop preload="metadata">
+              <source src="assets/videos/slide10.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="slide-indicator"></div>
+  <!-- BCU seal watermark (hidden on slide 4) -->
+  <img src="assets/images/bcu-seal.png" alt="" id="bcu-watermark" style="
+    position: fixed; bottom: 52px; right: 24px; width: 44px; height: 44px;
+    opacity: 0.25; pointer-events: none; z-index: 100;
+    transition: opacity 0.3s ease;
+  ">
+
+  <script src="js/engine.js"></script>
+  <script src="js/video-controller.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/interactions.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sparkle particles on closing slide
+      const container = document.getElementById('sparkle-container');
+      if (container) {
+        for (let i = 0; i < 20; i++) {
+          const s = document.createElement('div');
+          s.className = 'sparkle';
+          s.style.left = (10 + Math.random() * 80) + '%';
+          s.style.bottom = (-10 + Math.random() * 20) + '%';
+          s.style.setProperty('--duration', (3 + Math.random() * 4) + 's');
+          s.style.setProperty('--delay', (Math.random() * 5) + 's');
+          s.style.width = (2 + Math.random() * 4) + 'px';
+          s.style.height = s.style.width;
+          container.appendChild(s);
+        }
+      }
+
+      // Ambient floating dust on select slides
+      const dustSlides = ['slide-1', 'slide-4', 'slide-6', 'slide-10', 'slide-11'];
+      dustSlides.forEach(id => {
+        const slide = document.getElementById(id);
+        if (!slide) return;
+        const particles = document.createElement('div');
+        particles.className = 'ambient-particles';
+        for (let i = 0; i < 25; i++) {
+          const d = document.createElement('div');
+          d.className = 'dust';
+          d.style.left = (Math.random() * 100) + '%';
+          d.style.top = (Math.random() * 100) + '%';
+          d.style.setProperty('--drift-duration', (6 + Math.random() * 10) + 's');
+          d.style.setProperty('--drift-delay', (Math.random() * 6) + 's');
+          d.style.setProperty('--drift-x', (-50 + Math.random() * 100) + 'px');
+          d.style.setProperty('--drift-y', (-60 + Math.random() * 120) + 'px');
+          const size = (2 + Math.random() * 3) + 'px';
+          d.style.width = size;
+          d.style.height = size;
+          particles.appendChild(d);
+        }
+        slide.querySelector('.slide-content').style.position = 'relative';
+        slide.querySelector('.slide-content').appendChild(particles);
+      });
+    });
+  </script>
+
+</body>
+</html>

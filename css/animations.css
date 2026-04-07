@@ -1,0 +1,350 @@
+/* Entrance Animations & Effects */
+
+/* Staggered fade-in for children */
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide.active .stagger-in > *:nth-child(1) { animation: fadeSlideIn 0.5s ease-out 0.1s forwards; }
+.slide.active .stagger-in > *:nth-child(2) { animation: fadeSlideIn 0.5s ease-out 0.25s forwards; }
+.slide.active .stagger-in > *:nth-child(3) { animation: fadeSlideIn 0.5s ease-out 0.4s forwards; }
+.slide.active .stagger-in > *:nth-child(4) { animation: fadeSlideIn 0.5s ease-out 0.55s forwards; }
+.slide.active .stagger-in > *:nth-child(5) { animation: fadeSlideIn 0.5s ease-out 0.7s forwards; }
+.slide.active .stagger-in > *:nth-child(6) { animation: fadeSlideIn 0.5s ease-out 0.85s forwards; }
+.slide.active .stagger-in > *:nth-child(7) { animation: fadeSlideIn 0.5s ease-out 1.0s forwards; }
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Splash Screen Animations */
+.splash-logo {
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+.splash-logo.animate {
+  animation: splashLogoIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes splashLogoIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.splash-title {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.splash-title.animate {
+  animation: fadeSlideIn 0.5s ease-out 0.4s forwards;
+}
+
+.splash-tagline {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.splash-tagline.animate {
+  animation: fadeSlideIn 0.5s ease-out 0.7s forwards;
+}
+
+.splash-fade-out {
+  animation: splashFadeOut 0.4s ease-in-out 2.1s forwards;
+}
+
+@keyframes splashFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Accessibility Badge Cascade */
+.slide.active .a11y-badge:nth-child(1)  { animation: fadeSlideIn 0.3s ease-out 0.1s forwards; }
+.slide.active .a11y-badge:nth-child(2)  { animation: fadeSlideIn 0.3s ease-out 0.15s forwards; }
+.slide.active .a11y-badge:nth-child(3)  { animation: fadeSlideIn 0.3s ease-out 0.2s forwards; }
+.slide.active .a11y-badge:nth-child(4)  { animation: fadeSlideIn 0.3s ease-out 0.25s forwards; }
+.slide.active .a11y-badge:nth-child(5)  { animation: fadeSlideIn 0.3s ease-out 0.3s forwards; }
+.slide.active .a11y-badge:nth-child(6)  { animation: fadeSlideIn 0.3s ease-out 0.35s forwards; }
+.slide.active .a11y-badge:nth-child(7)  { animation: fadeSlideIn 0.3s ease-out 0.4s forwards; }
+.slide.active .a11y-badge:nth-child(8)  { animation: fadeSlideIn 0.3s ease-out 0.45s forwards; }
+.slide.active .a11y-badge:nth-child(9)  { animation: fadeSlideIn 0.3s ease-out 0.5s forwards; }
+.slide.active .a11y-badge:nth-child(10) { animation: fadeSlideIn 0.3s ease-out 0.55s forwards; }
+.slide.active .a11y-badge:nth-child(11) { animation: fadeSlideIn 0.3s ease-out 0.6s forwards; }
+.slide.active .a11y-badge:nth-child(12) { animation: fadeSlideIn 0.3s ease-out 0.65s forwards; }
+.slide.active .a11y-badge:nth-child(13) { animation: fadeSlideIn 0.3s ease-out 0.7s forwards; }
+.slide.active .a11y-badge:nth-child(14) { animation: fadeSlideIn 0.3s ease-out 0.75s forwards; }
+.slide.active .a11y-badge:nth-child(15) { animation: fadeSlideIn 0.3s ease-out 0.8s forwards; }
+.slide.active .a11y-badge:nth-child(16) { animation: fadeSlideIn 0.3s ease-out 0.85s forwards; }
+.slide.active .a11y-badge:nth-child(17) { animation: fadeSlideIn 0.3s ease-out 0.9s forwards; }
+.slide.active .a11y-badge:nth-child(18) { animation: fadeSlideIn 0.3s ease-out 0.95s forwards; }
+.slide.active .a11y-badge:nth-child(19) { animation: fadeSlideIn 0.3s ease-out 1.0s forwards; }
+
+/* Expanding Impact Circles */
+.slide.active .impact-circle.c1 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.2s forwards;
+}
+.slide.active .impact-circle.c2 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.5s forwards;
+}
+.slide.active .impact-circle.c3 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.8s forwards;
+}
+
+@keyframes circleExpand {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gold Sparkle Particles (Closing Slide) */
+.sparkle-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px var(--gold);
+}
+
+.slide.active .sparkle {
+  animation: sparkleFloat var(--duration) ease-in-out var(--delay) infinite;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(-40px) scale(1);
+  }
+  80% {
+    opacity: 0.4;
+    transform: translateY(-160px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-220px) scale(0.3);
+  }
+}
+
+/* Counter Animation */
+@property --counter {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.stat-counter {
+  counter-reset: counter var(--counter);
+}
+
+.slide.active .stat-counter {
+  animation: countUp 1.5s ease-out forwards;
+}
+
+@keyframes countUp {
+  from { --counter: 0; }
+  to { --counter: 33; }
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  animation: shimmerMove 1.5s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0%   { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+/* Pulse glow for app icon on close */
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 10px 40px rgba(134, 0, 56, 0.4); }
+  100% { box-shadow: 0 10px 60px rgba(134, 0, 56, 0.6), 0 0 80px rgba(253, 185, 19, 0.2); }
+}
+
+/* CBL Arrow animation */
+.cbl-arrow {
+  opacity: 0;
+}
+
+.slide.active .cbl-arrow:nth-child(2) {
+  animation: fadeSlideIn 0.3s ease-out 0.35s forwards;
+}
+.slide.active .cbl-arrow:nth-child(4) {
+  animation: fadeSlideIn 0.3s ease-out 0.65s forwards;
+}
+
+/* ========================================= */
+/* AMBIENT BACKGROUND EFFECTS               */
+/* ========================================= */
+
+/* Floating dust particles — very subtle, always moving */
+.ambient-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dust {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 4px rgba(253, 185, 19, 0.4);
+  animation: dustDrift var(--drift-duration) ease-in-out var(--drift-delay) infinite;
+}
+
+@keyframes dustDrift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  15% {
+    opacity: 0.7;
+    transform: translate(calc(var(--drift-x) * 0.15), calc(var(--drift-y) * 0.15)) scale(1);
+  }
+  85% {
+    opacity: 0.4;
+    transform: translate(calc(var(--drift-x) * 0.85), calc(var(--drift-y) * 0.85)) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift-x), var(--drift-y)) scale(0.3);
+  }
+}
+
+/* Gold divider breathing glow */
+.gold-divider {
+  animation: dividerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes dividerGlow {
+  0%   { box-shadow: 0 0 8px rgba(253, 185, 19, 0.1); opacity: 0.5; }
+  100% { box-shadow: 0 0 20px rgba(253, 185, 19, 0.3); opacity: 0.8; }
+}
+
+/* Glass card subtle light sweep — only when slide is active */
+.slide.active .glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide.active .glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  animation: cardSweep 6s ease-in-out 1s infinite;
+  pointer-events: none;
+}
+
+@keyframes cardSweep {
+  0%   { left: -100%; }
+  40%  { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* Stat number soft glow pulse */
+.stat-number {
+  text-shadow: 0 0 30px rgba(253, 185, 19, 0.15);
+  animation: statGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes statGlow {
+  0%   { text-shadow: 0 0 30px rgba(253, 185, 19, 0.1); }
+  100% { text-shadow: 0 0 50px rgba(253, 185, 19, 0.25); }
+}
+
+/* Section label subtle tracking animation */
+.slide.active .section-label {
+  animation: labelReveal 0.8s ease-out forwards;
+}
+
+@keyframes labelReveal {
+  0%   { letter-spacing: 4px; opacity: 0; }
+  100% { letter-spacing: 2px; opacity: 1; }
+}
+
+/* Pillar/CBL icon container gentle float */
+.slide.active .pillar-icon,
+.slide.active .cbl-step {
+  animation: iconFloat 4s ease-in-out infinite alternate;
+}
+
+.slide.active .pillar-icon:nth-child(1),
+.slide.active .cbl-step { animation-delay: 0s; }
+
+@keyframes iconFloat {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Impact circles subtle pulse after expand */
+.slide.active .impact-circle.c1 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.2s forwards, circlePulse 4s ease-in-out 1s infinite alternate;
+}
+.slide.active .impact-circle.c2 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.5s forwards, circlePulse 5s ease-in-out 1.5s infinite alternate;
+}
+.slide.active .impact-circle.c3 {
+  animation: circleExpand 0.6s var(--spring-soft) 0.8s forwards, circlePulse 6s ease-in-out 2s infinite alternate;
+}
+
+@keyframes circlePulse {
+  0%   { border-color: rgba(253, 185, 19, var(--pulse-start, 0.3)); }
+  100% { border-color: rgba(253, 185, 19, var(--pulse-end, 0.6)); }
+}
+
+/* A11y badge icons gentle pulse when visible */
+.slide.active .a11y-icon {
+  animation: iconPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes iconPulse {
+  0%   { box-shadow: 0 0 0 rgba(253, 185, 19, 0); }
+  100% { box-shadow: 0 0 8px rgba(253, 185, 19, 0.15); }
+}
