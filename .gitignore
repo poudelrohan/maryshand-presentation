@@ -1,0 +1,5 @@
+# Large .mov files (transparent iPhone mockups - run locally in Safari only)
+assets/videos/*.mov
+
+# macOS
+.DS_Store
